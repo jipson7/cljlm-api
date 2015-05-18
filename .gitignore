@@ -10,3 +10,6 @@ pom.xml.asc
 /.nrepl-port
 .DS_Store
 *.swp
+
+#Ignore folder that stores large binaries
+language-models/
