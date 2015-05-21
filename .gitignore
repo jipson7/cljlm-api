@@ -13,3 +13,9 @@ pom.xml.asc
 
 #Ignore folder that stores large binaries
 language-models/
+
+#Unignore needed berkeley jar
+!berkeleylm.jar
+
+#Ignore Maven Local checksums
+
