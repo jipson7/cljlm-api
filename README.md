@@ -2,13 +2,12 @@
 
 ## Prerequisites
 
-You will need [Leiningen][] 2.0.0 or above installed.
-
-[leiningen]: https://github.com/technomancy/leiningen
+* Oracle JDK 7 or 8
+* Leiningen 2.0 or higher
+* Maven
+* at least 11gb of RAM (to load the google corpus)
 
 ##Setup
-
-First Run
 
 ```
 mvn install:install-file -Dfile=./berkeleylm.jar -DgroupId=berkeley -DartifactId=nlp -Dversion=1.0.0 -Dpackaging=jar -DgeneratePom=true -DcreateChecksum=true -DlocalRepositoryPath=local-maven
@@ -21,7 +20,7 @@ lein deps
 
 ```
 
-To install all dependencies
+to install all dependencies.
 
 ## Running
 
