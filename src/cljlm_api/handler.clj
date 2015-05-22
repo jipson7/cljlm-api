@@ -31,8 +31,7 @@
 (def language-model (load-lm-google test-binary test-vocab))
 
 (defn test-lm []
-  (let [sentence test-sentence]
-    (format "%s = %.2f" sentence (compute-log-prob language-model sentence))))
+    (format "%s = %.2f" sentence (compute-log-prob language-model test-sentence)))
 
 (defroutes app-routes
   (GET "/" [] (test-lm))
