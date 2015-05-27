@@ -2,7 +2,8 @@
   (:import [edu.berkeley.nlp.lm.io LmReaders])
   (:require [compojure.core :refer :all]
             [compojure.route :as route]
-            [ring.middleware.defaults :refer [wrap-defaults site-defaults]]))
+            [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
+            [compojure.handler :as handler]))
 
 
 ;Reads a binary language model
@@ -43,6 +44,15 @@
 (defn test-lm []
     (format "%s = %.2f" test-sentence (get-log-prob language-model test-sentence)))
 
+
+;Middleware function to allow CORS request from chrome extension
+(defn allow-cross-origin  
+    "middleware function to allow crosss origin"  
+    [handler]  
+    (fn [request]  
+        (let [response (handler request)]  
+        (assoc-in response [:headers "Access-Control-Allow-Origin"] "*"))))
+
 (defroutes app-routes
   (GET "/" [] (test-lm))
   (GET "/:sentence" [sentence] 
@@ -51,4 +61,4 @@
 
 
 (def app
-  (wrap-defaults app-routes site-defaults))
+  (-> (wrap-defaults app-routes site-defaults) (allow-cross-origin)))
