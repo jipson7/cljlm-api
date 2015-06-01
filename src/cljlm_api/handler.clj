@@ -33,6 +33,7 @@
         words (java.util.Arrays/asList array)]
     (.getLogProb lm words)))
 
+(defn console-log [sentence prob] (println sentence " " prob) "response")
 
 ;Test data for now
 ;TODO write actual testing code or run the code present in the berkeleylm tests
@@ -55,8 +56,8 @@
 
 (defroutes app-routes
   (GET "/" [] (test-lm))
-  (GET "/:sentence" [sentence] 
-    (pr-str (get-log-prob language-model (str sentence))))
+  (GET "/:sentence" [sentence] (let [prob (get-log-prob language-model (str sentence))]
+    (do (console-log sentence prob) (pr-str prob))))
   (route/not-found "Not Found"))
 
 
